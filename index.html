@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>テストサイト</title>
+    <script>
+        // ここにTikTok Pixelのコードを後で入れる
+    </script>
+    <!-- TikTok Pixel Code Start -->
+<script>
+    !function (w, d, t) {
+      w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
+    var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
+    ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+    
+    
+      ttq.load('CUKAUS3C77UE7K4EKVE0');
+      ttq.page();
+    }(window, document, 'ttq');
+    </script>
+    <!-- TikTok Pixel Code End -->
+</head>
+<body>
+
+    <h1>TikTok Pixel テストページ</h1>
+    <p>ボタンクリック時にTikTokイベントを送信します。</p>
+
+    <!-- ✅ イベント発火用のボタン -->
+    <button id="testButton">ボタンクリックを記録</button>
+
+    <script>
+        // ✅ 個人識別情報（PII）の識別（SHA-256でハッシュ化済みのデータを使用）
+        ttq.identify({
+            "email": "hashed_email_address",  // SHA-256でハッシュ化されたEmail
+            "phone_number": "hashed_phone_number",  // SHA-256でハッシュ化された電話番号
+            "external_id": "hashed_external_id"  // SHA-256でハッシュ化されたID
+        });
+
+        // ✅ ボタンクリック時にイベントを送信
+        document.getElementById("testButton").addEventListener("click", function() {
+            ttq.track('ClickButton', {
+                "contents": [
+                    {
+                        "content_id": "12345",  // 商品の識別ID
+                        "content_type": "product",  // 商品タイプ（例: "product" or "product_group"）
+                        "content_name": "テスト商品"  // 商品名
+                    }
+                ],
+                "value": 100,  // 注文や購入金額
+                "currency": "JPY"  // 通貨（日本円）
+            });
+
+            alert("イベントがTikTokに送信されました！");
+        });
+    </script>
+
+</body>
+</html>
